@@ -591,6 +591,10 @@ export interface ExtHostWebviewsShape {
 	$save(handle: WebviewPanelHandle): Promise<boolean>;
 }
 
+export interface ExtHostEWindowShape {
+	$openEWindow(): void;
+}
+
 export interface MainThreadUrlsShape extends IDisposable {
 	$registerUriHandler(handle: number, extensionId: ExtensionIdentifier): Promise<void>;
 	$unregisterUriHandler(handle: number): Promise<void>;
@@ -618,6 +622,10 @@ export interface MainThreadWorkspaceShape extends IDisposable {
 export interface IFileChangeDto {
 	resource: UriComponents;
 	type: files.FileChangeType;
+}
+
+export interface MainThreadEWindowShape extends IDisposable {
+	$openEWindow(): void;
 }
 
 export interface MainThreadFileSystemShape extends IDisposable {
@@ -1395,6 +1403,7 @@ export const MainContext = {
 	MainThreadUrls: createMainId<MainThreadUrlsShape>('MainThreadUrls'),
 	MainThreadWorkspace: createMainId<MainThreadWorkspaceShape>('MainThreadWorkspace'),
 	MainThreadFileSystem: createMainId<MainThreadFileSystemShape>('MainThreadFileSystem'),
+	MainThreadEWindow: createMainId<MainThreadEWindowShape>('MainThreadEWindow'),
 	MainThreadExtensionService: createMainId<MainThreadExtensionServiceShape>('MainThreadExtensionService'),
 	MainThreadSCM: createMainId<MainThreadSCMShape>('MainThreadSCM'),
 	MainThreadSearch: createMainId<MainThreadSearchShape>('MainThreadSearch'),
@@ -1428,6 +1437,7 @@ export const ExtHostContext = {
 	ExtHostWorkspace: createExtId<ExtHostWorkspaceShape>('ExtHostWorkspace'),
 	ExtHostWindow: createExtId<ExtHostWindowShape>('ExtHostWindow'),
 	ExtHostWebviews: createExtId<ExtHostWebviewsShape>('ExtHostWebviews'),
+	ExtHostEWindow: createExtId<ExtHostEWindowShape>('ExtHostEWindow'),
 	ExtHostEditorInsets: createExtId<ExtHostEditorInsetsShape>('ExtHostEditorInsets'),
 	ExtHostProgress: createMainId<ExtHostProgressShape>('ExtHostProgress'),
 	ExtHostComments: createMainId<ExtHostCommentsShape>('ExtHostComments'),

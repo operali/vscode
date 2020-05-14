@@ -295,7 +295,31 @@ export class ElectronWebviewBasedWebview extends BaseWebview<WebviewTag> impleme
 	protected createElement(options: WebviewOptions) {
 		const element = document.createElement('webview');
 		element.setAttribute('partition', `webview${Date.now()}`);
-		element.setAttribute('webpreferences', 'contextIsolation=yes');
+		element.setAttribute('webpreferences', 'disableDialogs, navigateOnDragDrop=yes, nativeWindowOpen=yes, webSecurity=no, allowRunningInsecureContent=yes, zoomFactor=1, javascript=yes, contextIsolation=no');
+		element.setAttribute('nodeintegrationinsubframes', '');
+		element.setAttribute('allowpopups', 'true');
+		element.setAttribute('disablewebsecurity', 'false');
+
+
+		// element.setAttribute('sandbox', 'true');
+
+		element.addEventListener('error', (err)=>{
+			console.log('error.................', err);
+		});
+
+		element.addEventListener('new-window', (event) => {
+			//console.log("new-window......................", event.composedPath, event.currentTarget, event.target, event.url);
+		});
+
+		element.addEventListener('will-navigate', (event) => {
+			//console.log("will-naviage......................", event.composedPath, event.currentTarget, event.target, event.url);
+		});
+
+		element.addEventListener('update-target-url', (event) => {
+			// console.log("update-target-url......................", event.url);
+		});
+
+
 		element.className = `webview ${options.customClasses || ''}`;
 
 		element.style.flex = '0 1';

@@ -52,6 +52,7 @@ import './mainThreadDownloadService';
 import './mainThreadUrls';
 import './mainThreadWindow';
 import './mainThreadWebview';
+import './mainThreadEWindow';
 import './mainThreadWorkspace';
 import './mainThreadComments';
 import './mainThreadTask';

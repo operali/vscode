@@ -7154,6 +7154,8 @@ declare module 'vscode' {
 		 * @param serializer Webview serializer.
 		 */
 		export function registerWebviewPanelSerializer(viewType: string, serializer: WebviewPanelSerializer): Disposable;
+
+		export function openEWindow(): void;
 	}
 
 	/**
